@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>test</title>
+    <url>/2024/01/28/test/</url>
+    <content><![CDATA[<p>$$a^2 + b^2 &#x3D; c^2$$</p>
+<pre class="mermaid">graph LR;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello, world!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">1</th>
+<th align="right">5</th>
+<th align="left">a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="right">1</td>
+<td align="left">d</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="right">a</td>
+<td align="left">c</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="right">s</td>
+<td align="left">b</td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>Misc</tag>
+      </tags>
+  </entry>
+</search>
