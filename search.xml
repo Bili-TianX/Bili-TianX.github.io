@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>GameDev</title>
+    <url>/2024/01/28/GameDev/</url>
+    <content><![CDATA[<h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
+]]></content>
+      <tags>
+        <tag>Dev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>test</title>
     <url>/2024/01/28/test/</url>
     <content><![CDATA[<p>$$a^2 + b^2 &#x3D; c^2$$</p>
