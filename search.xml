@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>GameDev</title>
-    <url>/2024/01/28/GameDev/</url>
-    <content><![CDATA[<h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
-]]></content>
-      <tags>
-        <tag>Dev</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>test</title>
     <url>/2024/01/28/test/</url>
     <content><![CDATA[<p>$$a^2 + b^2 &#x3D; c^2$$</p>
@@ -48,6 +39,26 @@
 ]]></content>
       <tags>
         <tag>Misc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GameDev</title>
+    <url>/2024/01/28/GameDev/</url>
+    <content><![CDATA[<h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
+]]></content>
+      <tags>
+        <tag>Dev</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字符串压缩、解压缩</title>
+    <url>/2024/02/03/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B%E7%BC%A9/</url>
+    <content><![CDATA[<p><img data-src="/images/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B%E7%BC%A9.png" alt="字符串压缩、解压缩.png"></p>
+<h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">Regex(<span class="string">&quot;&quot;&quot;(.)\1*&quot;&quot;&quot;</span>)</span><br><span class="line">    .findAll(<span class="string">&quot;AAABBCCCCDD&quot;</span>)</span><br><span class="line">    .map &#123; it.value &#125;</span><br><span class="line">    .forEach &#123; print(<span class="string">&quot;<span class="subst">$&#123;it.length&#125;</span><span class="subst">$&#123;it[<span class="number">0</span>]&#125;</span>&quot;</span>) &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">Regex(<span class="string">&quot;&quot;&quot;(\d+)([A-Za-z])&quot;&quot;&quot;</span>)</span><br><span class="line">    .findAll(<span class="string">&quot;3A2B4C2D&quot;</span>)</span><br><span class="line">    .map &#123; it.groupValues &#125;</span><br><span class="line">    .forEach &#123; print(it[<span class="number">2</span>].repeat(it[<span class="number">1</span>].toInt())) &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Dev</tag>
       </tags>
   </entry>
 </search>
