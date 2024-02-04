@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>GameDev</title>
+    <url>/2024/01/28/GameDev/</url>
+    <content><![CDATA[<h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
+]]></content>
+      <tags>
+        <tag>Dev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>test</title>
     <url>/2024/01/28/test/</url>
     <content><![CDATA[<p>$$a^2 + b^2 &#x3D; c^2$$</p>
@@ -42,10 +51,162 @@
       </tags>
   </entry>
   <entry>
-    <title>GameDev</title>
-    <url>/2024/01/28/GameDev/</url>
-    <content><![CDATA[<h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
-]]></content>
+    <title>KotlinCoroutines</title>
+    <url>/2024/02/04/KotlinCoroutines/</url>
+    <content><![CDATA[<h1 id="Coroutine"><a href="#Coroutine" class="headerlink" title="Coroutine"></a>Coroutine</h1><p>特点：</p>
+<ul>
+<li>suspendable</li>
+<li>run concurrently</li>
+<li>now bound to particular thread</li>
+<li>light weight</li>
+</ul>
+<h1 id="Structured-Concurrency"><a href="#Structured-Concurrency" class="headerlink" title="Structured Concurrency"></a>Structured Concurrency</h1><p>内容：Coroutine只能运行在CoroutineScope中</p>
+<p>意义：</p>
+<ul>
+<li>限定生命周期</li>
+<li>避免Coroutine丢失、泄露</li>
+<li>正确处理异常</li>
+</ul>
+<h1 id="CoroutineScope"><a href="#CoroutineScope" class="headerlink" title="CoroutineScope"></a>CoroutineScope</h1><p>用途：承载Coroutine</p>
+<p>特点：所有Coroutine结束后才退出</p>
+<h1 id="CoroutineBuilder"><a href="#CoroutineBuilder" class="headerlink" title="CoroutineBuilder"></a>CoroutineBuilder</h1><p>用途：提供CoroutineScope</p>
+<p>实例：</p>
+<ul>
+<li><code>runBlocking</code>（阻塞线程）</li>
+<li><code>launch</code></li>
+</ul>
+<h1 id="Suspend-function"><a href="#Suspend-function" class="headerlink" title="Suspend function"></a>Suspend function</h1><p>特点：</p>
+<ul>
+<li>可在Coroutine中被调用</li>
+<li>可在函数内调用其他suspend function</li>
+<li>自定义coroutineScope：使用<code>coroutineScope &#123; ... &#125;</code></li>
+</ul>
+<h1 id="Suspend-vs-Block"><a href="#Suspend-vs-Block" class="headerlink" title="Suspend vs Block"></a>Suspend vs Block</h1><h1 id="Job"><a href="#Job" class="headerlink" title="Job"></a>Job</h1><p>内容：代表Coroutine的Handle</p>
+<p>操作：</p>
+<ul>
+<li><code>job.join()</code> 显式等待Coroutine完成</li>
+</ul>
+<h1 id="Light-Weight"><a href="#Light-Weight" class="headerlink" title="Light Weight"></a>Light Weight</h1><ul>
+<li>thread：占用大量内存</li>
+<li>coroutine：占用极少内存</li>
+</ul>
+<h1 id="一些函数"><a href="#一些函数" class="headerlink" title="一些函数"></a>一些函数</h1><ul>
+<li><p><code>delay(ms)</code> 挂起Coroutine <code>ms</code> 毫秒</p>
+</li>
+<li><p><code>repeat(x) &#123; ... &#125;</code> 重复执行 <code>x</code> 次代码块</p>
+</li>
+</ul>
+<h1 id="async"><a href="#async" class="headerlink" title="async"></a>async</h1><p>作用：创建返回特定结果的Coroutine</p>
+<p>返回类型：<code>Deferred&lt;T&gt;</code></p>
+<p>操作：</p>
+<ul>
+<li><code>await()</code></li>
+<li><code>start()</code></li>
+<li><code>Iterable&lt;Deferred&lt;T&gt;&gt;.awaitAll()</code></li>
+</ul>
+<h1 id="GlobalScope-launch"><a href="#GlobalScope-launch" class="headerlink" title="GlobalScope.launch"></a>GlobalScope.launch</h1><blockquote>
+<p>不推荐使用</p>
+</blockquote>
+<p>作用：创建全局范围下的Coroutine（不受任何CoroutineScope限制）</p>
+<h1 id="launch-Dispatcher"><a href="#launch-Dispatcher" class="headerlink" title="launch(Dispatcher)"></a>launch(Dispatcher)</h1><p>改变Coroutine运行的线程</p>
+<ul>
+<li><code>Dispatchers.Default</code> 线程池</li>
+<li><code>Dispatchers.Main</code> 主线程</li>
+</ul>
+<h1 id="withContext"><a href="#withContext" class="headerlink" title="withContext"></a>withContext</h1><p>修改Coroutine所在的线程</p>
+<blockquote>
+<p>默认的context继承父亲</p>
+</blockquote>
+<h1 id="async-继承-Job"><a href="#async-继承-Job" class="headerlink" title="async 继承 Job"></a>async 继承 Job</h1><p><code>Job.cancel()</code></p>
+<p><code>Job.setupCancellation()</code></p>
+<h1 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h1><ul>
+<li><p><code>send()</code></p>
+</li>
+<li><p><code>receive()</code></p>
+</li>
+<li><p><code>close()</code></p>
+</li>
+<li><p><code>Channel&lt;T&gt;(容量)</code></p>
+<ul>
+<li><p><code>&lt;空&gt;</code> 无缓冲</p>
+</li>
+<li><p><code>Int</code> 指定的缓冲容量</p>
+</li>
+<li><p><code>UNLIMITED</code> 缓存全部</p>
+</li>
+<li><p><code>CONFLATED</code></p>
+<blockquote>
+<p>Requests a conflated channel in the Channel(…) factory function. This is a shortcut to creating a channel with onBufferOverflow &#x3D; DROP_OLDEST.</p>
+</blockquote>
+</li>
+<li><p><code>RENDEZVOUS</code></p>
+</li>
+<li><p><code>BUFFERED</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Test-Coroutine"><a href="#Test-Coroutine" class="headerlink" title="Test Coroutine"></a>Test Coroutine</h1><p>Virtual Start Time</p>
+<h1 id="while-isActive"><a href="#while-isActive" class="headerlink" title="while (isActive)"></a>while (isActive)</h1><ul>
+<li><code>withTimeout()</code></li>
+<li><code>withTimeoutOrNull()</code></li>
+<li><code>finally</code></li>
+<li><code>coroutineContext[Job]</code></li>
+<li><code>coroutineContext.cancelChildren()</code></li>
+</ul>
+<h1 id="async-start-LAZY"><a href="#async-start-LAZY" class="headerlink" title="async(start &#x3D; LAZY)"></a>async(start &#x3D; LAZY)</h1><p>使用<code>start()</code>启动</p>
+<h1 id="Unconfined-Dispatcher"><a href="#Unconfined-Dispatcher" class="headerlink" title="Unconfined Dispatcher"></a>Unconfined Dispatcher</h1><h1 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">	<span class="keyword">val</span> scope = MainScope()</span><br><span class="line">	<span class="function"><span class="keyword">fun</span> <span class="title">destory</span><span class="params">()</span></span> &#123;</span><br><span class="line">        scope.cancel()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><ul>
+<li><code>asContextElement</code></li>
+</ul>
+<h1 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h1><h1 id="Flow"><a href="#Flow" class="headerlink" title="Flow"></a>Flow</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">f</span><span class="params">()</span></span> = sequence &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.3</span>) &#123;</span><br><span class="line">        yield(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">f</span><span class="params">()</span></span> = flow &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.3</span>) &#123;</span><br><span class="line">        emit(i)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f().collect &#123; ... &#125;</span><br><span class="line">f().onEach &#123; ... &#125;</span><br><span class="line">(<span class="number">1.</span><span class="number">.3</span>).asFlow()</span><br><span class="line">flowOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">f().transform &#123;</span><br><span class="line">	emit(<span class="string">&quot;v=<span class="variable">$it</span>&quot;</span>)</span><br><span class="line">    emit(<span class="string">&quot;<span class="variable">$it</span>&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">f().take(<span class="number">2</span>) <span class="comment">// 取前两个元素</span></span><br></pre></td></tr></table></figure>
+
+<p>flow 特点：可在其中用suspend函数，但其本身不被标记为suspend</p>
+<p>flow仅在collect时才会执行</p>
+<p>flow可用<code>withTimeout()</code>取消</p>
+<p>flow可用<code>.map &#123; ... &#125;</code>、<code>.filter &#123; ... &#125;</code>等函数，且其中可用suspend函数</p>
+<p>flow进行链式操作时，元素是一个个经过链式操作的，而非flow结束后才执行</p>
+<hr>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">withContext(...) &#123;</span><br><span class="line">	f().collect &#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>错误用法（会抛出异常）：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">f</span><span class="params">()</span></span> = flow &#123;</span><br><span class="line">    withContext(...) &#123;</span><br><span class="line">        ...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确用法：</p>
+<p><code>flow &#123; ... &#125;.flowOn(调度器)</code></p>
+<hr>
+<p><code>f().buffer().collect &#123; ... &#125;</code></p>
+<p><code>f().collectLatest &#123; ... &#125;</code> 一旦有新的就重新开始</p>
+<ul>
+<li><p><code>f().zip(f())</code> 按顺序</p>
+</li>
+<li><p><code>f().combine(f())</code> 按快慢</p>
+</li>
+</ul>
+<p>flow展平：</p>
+<ul>
+<li><code>flatMapConcat</code></li>
+<li><code>flatMapMerge</code></li>
+<li><code>flatMapLatest</code></li>
+</ul>
+<p><code>f().catch &#123; ... &#125;</code></p>
+<h1 id="Channel（进阶）"><a href="#Channel（进阶）" class="headerlink" title="Channel（进阶）"></a>Channel（进阶）</h1><p><code>for (x in channel) &#123; ... &#125;</code></p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> CoroutineScope.<span class="title">f</span><span class="params">()</span></span> = produce &#123;</span><br><span class="line">    <span class="keyword">for</span> (x <span class="keyword">in</span> <span class="number">1.</span><span class="number">.5</span>) send(x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>f.consumeEach &#123; ... &#125;</code></p>
+<h1 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> CoroutineScope.<span class="title">square</span><span class="params">(channel: <span class="type">ReceiveChannel</span>&lt;<span class="type">Int</span>&gt;)</span></span> = produce &#123;</span><br><span class="line">	<span class="keyword">for</span> (x <span class="keyword">in</span> c) send(x * x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">square(f())</span><br></pre></td></tr></table></figure>
+
+<h1 id="fan-out"><a href="#fan-out" class="headerlink" title="fan-out"></a>fan-out</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">repeat(<span class="number">5</span>) &#123;</span><br><span class="line">    launch &#123;</span><br><span class="line">        <span class="keyword">for</span> (x <span class="keyword">in</span> channel) &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="fan-in"><a href="#fan-in" class="headerlink" title="fan-in"></a>fan-in</h1><p>多个Coroutine向同一个channel进行send操作</p>
+<h1 id="ticker"><a href="#ticker" class="headerlink" title="ticker"></a>ticker</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">ticker</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    delayMillis: <span class="type">Long</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    initialDelayMillis: <span class="type">Long</span> = delayMillis,</span></span></span><br><span class="line"><span class="params"><span class="function">    context: <span class="type">CoroutineContext</span> = EmptyCoroutineContext,</span></span></span><br><span class="line"><span class="params"><span class="function">    mode: <span class="type">TickerMode</span> = TickerMode.FIXED_PERIOD</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>: ReceiveChannel&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="CoroutineExceptionHandler"><a href="#CoroutineExceptionHandler" class="headerlink" title="CoroutineExceptionHandler"></a>CoroutineExceptionHandler</h1><h1 id="supervisorScope"><a href="#supervisorScope" class="headerlink" title="supervisorScope"></a>supervisorScope</h1><h1 id="Mutex"><a href="#Mutex" class="headerlink" title="Mutex"></a>Mutex</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> mutex = Mutex()</span><br><span class="line">mutex.withLock() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Select-Experssion"><a href="#Select-Experssion" class="headerlink" title="Select Experssion"></a>Select Experssion</h1>]]></content>
       <tags>
         <tag>Dev</tag>
       </tags>

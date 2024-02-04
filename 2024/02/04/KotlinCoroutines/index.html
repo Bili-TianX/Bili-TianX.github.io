@@ -25,28 +25,33 @@
     var CONFIG = {"hostname":"bili-tianx.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":true,"preload":true},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="TianX Studio">
-<meta property="og:url" content="https://bili-tianx.github.io/index.html">
+  <meta name="description" content="Coroutine特点：  suspendable run concurrently now bound to particular thread light weight  Structured Concurrency内容：Coroutine只能运行在CoroutineScope中 意义：  限定生命周期 避免Coroutine丢失、泄露 正确处理异常  CoroutineScope用途：承载C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KotlinCoroutines">
+<meta property="og:url" content="https://bili-tianx.github.io/2024/02/04/KotlinCoroutines/index.html">
 <meta property="og:site_name" content="TianX Studio">
+<meta property="og:description" content="Coroutine特点：  suspendable run concurrently now bound to particular thread light weight  Structured Concurrency内容：Coroutine只能运行在CoroutineScope中 意义：  限定生命周期 避免Coroutine丢失、泄露 正确处理异常  CoroutineScope用途：承载C">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-02-04T11:09:20.000Z">
+<meta property="article:modified_time" content="2024-02-04T11:09:35.905Z">
 <meta property="article:author" content="Bili_TianX">
+<meta property="article:tag" content="Dev">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://bili-tianx.github.io/">
+<link rel="canonical" href="https://bili-tianx.github.io/2024/02/04/KotlinCoroutines/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>TianX Studio</title>
+  <title>KotlinCoroutines | TianX Studio</title>
   
 
 
@@ -178,9 +183,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -196,10 +202,9 @@
       <meta itemprop="name" content="TianX Studio">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/04/KotlinCoroutines/" class="post-title-link" itemprop="url">KotlinCoroutines</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          KotlinCoroutines
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -223,7 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Coroutine"><a href="#Coroutine" class="headerlink" title="Coroutine"></a>Coroutine</h1><p>特点：</p>
+        <h1 id="Coroutine"><a href="#Coroutine" class="headerlink" title="Coroutine"></a>Coroutine</h1><p>特点：</p>
 <ul>
 <li>suspendable</li>
 <li>run concurrently</li>
@@ -377,232 +382,33 @@
 <h1 id="CoroutineExceptionHandler"><a href="#CoroutineExceptionHandler" class="headerlink" title="CoroutineExceptionHandler"></a>CoroutineExceptionHandler</h1><h1 id="supervisorScope"><a href="#supervisorScope" class="headerlink" title="supervisorScope"></a>supervisorScope</h1><h1 id="Mutex"><a href="#Mutex" class="headerlink" title="Mutex"></a>Mutex</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> mutex = Mutex()</span><br><span class="line">mutex.withLock() &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="Select-Experssion"><a href="#Select-Experssion" class="headerlink" title="Select Experssion"></a>Select Experssion</h1>
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/Dev/" rel="tag"># Dev</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bili-tianx.github.io/2024/02/03/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B%E7%BC%A9/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Bili_TianX">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TianX Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/03/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B%E7%BC%A9/" class="post-title-link" itemprop="url">字符串压缩、解压缩</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-02-03 07:24:03 / 修改时间：07:25:57" itemprop="dateCreated datePublished" datetime="2024-02-03T07:24:03+08:00">2024-02-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img data-src="/images/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B%E7%BC%A9.png" alt="字符串压缩、解压缩.png"></p>
-<h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Regex(<span class="string">&quot;&quot;&quot;(.)\1*&quot;&quot;&quot;</span>)</span><br><span class="line">    .findAll(<span class="string">&quot;AAABBCCCCDD&quot;</span>)</span><br><span class="line">    .map &#123; it.value &#125;</span><br><span class="line">    .forEach &#123; print(<span class="string">&quot;<span class="subst">$&#123;it.length&#125;</span><span class="subst">$&#123;it[<span class="number">0</span>]&#125;</span>&quot;</span>) &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Regex(<span class="string">&quot;&quot;&quot;(\d+)([A-Za-z])&quot;&quot;&quot;</span>)</span><br><span class="line">    .findAll(<span class="string">&quot;3A2B4C2D&quot;</span>)</span><br><span class="line">    .map &#123; it.groupValues &#125;</span><br><span class="line">    .forEach &#123; print(it[<span class="number">2</span>].repeat(it[<span class="number">1</span>].toInt())) &#125;</span><br></pre></td></tr></table></figure>
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/03/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B%E7%BC%A9/" rel="prev" title="字符串压缩、解压缩">
+      <i class="fa fa-chevron-left"></i> 字符串压缩、解压缩
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bili-tianx.github.io/2024/01/28/GameDev/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Bili_TianX">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TianX Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/01/28/GameDev/" class="post-title-link" itemprop="url">GameDev</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-01-28 10:10:16 / 修改时间：10:11:28" itemprop="dateCreated datePublished" datetime="2024-01-28T10:10:16+08:00">2024-01-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bili-tianx.github.io/2024/01/28/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Bili_TianX">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TianX Studio">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/01/28/test/" class="post-title-link" itemprop="url">test</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-01-28 07:36:26 / 修改时间：07:41:11" itemprop="dateCreated datePublished" datetime="2024-01-28T07:36:26+08:00">2024-01-28</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>$$a^2 + b^2 &#x3D; c^2$$</p>
-<pre class="mermaid">graph LR;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello, world!&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">1</th>
-<th align="right">5</th>
-<th align="left">a</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="right">1</td>
-<td align="left">d</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="right">a</td>
-<td align="left">c</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="right">s</td>
-<td align="left">b</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -655,6 +461,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Coroutine"><span class="nav-number">1.</span> <span class="nav-text">Coroutine</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Structured-Concurrency"><span class="nav-number">2.</span> <span class="nav-text">Structured Concurrency</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CoroutineScope"><span class="nav-number">3.</span> <span class="nav-text">CoroutineScope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CoroutineBuilder"><span class="nav-number">4.</span> <span class="nav-text">CoroutineBuilder</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Suspend-function"><span class="nav-number">5.</span> <span class="nav-text">Suspend function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Suspend-vs-Block"><span class="nav-number">6.</span> <span class="nav-text">Suspend vs Block</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Job"><span class="nav-number">7.</span> <span class="nav-text">Job</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Light-Weight"><span class="nav-number">8.</span> <span class="nav-text">Light Weight</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%87%BD%E6%95%B0"><span class="nav-number">9.</span> <span class="nav-text">一些函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#async"><span class="nav-number">10.</span> <span class="nav-text">async</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GlobalScope-launch"><span class="nav-number">11.</span> <span class="nav-text">GlobalScope.launch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#launch-Dispatcher"><span class="nav-number">12.</span> <span class="nav-text">launch(Dispatcher)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#withContext"><span class="nav-number">13.</span> <span class="nav-text">withContext</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#async-%E7%BB%A7%E6%89%BF-Job"><span class="nav-number">14.</span> <span class="nav-text">async 继承 Job</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Channel"><span class="nav-number">15.</span> <span class="nav-text">Channel</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test-Coroutine"><span class="nav-number">16.</span> <span class="nav-text">Test Coroutine</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#while-isActive"><span class="nav-number">17.</span> <span class="nav-text">while (isActive)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#async-start-LAZY"><span class="nav-number">18.</span> <span class="nav-text">async(start &#x3D; LAZY)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Unconfined-Dispatcher"><span class="nav-number">19.</span> <span class="nav-text">Unconfined Dispatcher</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Scope"><span class="nav-number">20.</span> <span class="nav-text">Scope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ThreadLocal"><span class="nav-number">21.</span> <span class="nav-text">ThreadLocal</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Debug"><span class="nav-number">22.</span> <span class="nav-text">Debug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Flow"><span class="nav-number">23.</span> <span class="nav-text">Flow</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Channel%EF%BC%88%E8%BF%9B%E9%98%B6%EF%BC%89"><span class="nav-number">24.</span> <span class="nav-text">Channel（进阶）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pipeline"><span class="nav-number">25.</span> <span class="nav-text">Pipeline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fan-out"><span class="nav-number">26.</span> <span class="nav-text">fan-out</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fan-in"><span class="nav-number">27.</span> <span class="nav-text">fan-in</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ticker"><span class="nav-number">28.</span> <span class="nav-text">ticker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CoroutineExceptionHandler"><span class="nav-number">29.</span> <span class="nav-text">CoroutineExceptionHandler</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#supervisorScope"><span class="nav-number">30.</span> <span class="nav-text">supervisorScope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mutex"><span class="nav-number">31.</span> <span class="nav-text">Mutex</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Select-Experssion"><span class="nav-number">32.</span> <span class="nav-text">Select Experssion</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
