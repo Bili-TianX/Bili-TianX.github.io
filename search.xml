@@ -1,53 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ANTLR使用</title>
+    <url>/2024/02/07/ANTLR%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="ANTLR-使用"><a href="#ANTLR-使用" class="headerlink" title="ANTLR 使用"></a>ANTLR 使用</h1><h2 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.antlr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>antlr4-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>antlr4<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.antlr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>antlr4-runtime<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-获取语法文件"><a href="#2-获取语法文件" class="headerlink" title="2. 获取语法文件"></a>2. 获取语法文件</h2><p><a href="https://github.com/antlr/grammars-v4">antlr&#x2F;grammars-v4</a></p>
+<h2 id="3-生成解析器"><a href="#3-生成解析器" class="headerlink" title="3. 生成解析器"></a>3. 生成解析器</h2><ol>
+<li><p>将语法文件放在<code>src/main/antlr</code>下</p>
+</li>
+<li><p>执行Maven命令：<code>mvn antlr4:antlr4</code>，这将会在<code>target/generated-sources/antlr4</code>下生成解析器的代码文件</p>
+</li>
+<li><p>将文件转移到源码路径中</p>
+</li>
+</ol>
+<h2 id="4-编写代码"><a href="#4-编写代码" class="headerlink" title="4. 编写代码"></a>4. 编写代码</h2><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> org.example</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> c.*</span><br><span class="line"><span class="keyword">import</span> org.antlr.v4.runtime.*</span><br><span class="line"><span class="keyword">import</span> org.antlr.v4.runtime.misc.Interval</span><br><span class="line"><span class="keyword">import</span> org.antlr.v4.runtime.tree.ParseTreeWalker</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">val</span> FILENAME = <span class="string">&quot;...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取内容</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> ParserRuleContext.<span class="title">detail</span><span class="params">()</span></span>: String? &#123;</span><br><span class="line">    <span class="keyword">val</span> startIndex = start.startIndex</span><br><span class="line">    <span class="keyword">val</span> stopIndex = stop.stopIndex</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> start.inputStream.getText(Interval.of(startIndex, stopIndex))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> errorListener = <span class="keyword">object</span> : BaseErrorListener() &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">syntaxError</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">            recognizer: <span class="type">Recognizer</span>&lt;*, *&gt;?,</span></span></span><br><span class="line"><span class="params"><span class="function">            offendingSymbol: <span class="type">Any</span>?,</span></span></span><br><span class="line"><span class="params"><span class="function">            line: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">            charPositionInLine: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">            msg: <span class="type">String</span>?,</span></span></span><br><span class="line"><span class="params"><span class="function">            e: <span class="type">RecognitionException</span>?</span></span></span><br><span class="line"><span class="params"><span class="function">        )</span></span> &#123;</span><br><span class="line">            println(msg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    获取源码</span></span><br><span class="line">    <span class="keyword">val</span> sourceFile = CharStreams.fromStream(FileInputStream(FILENAME))</span><br><span class="line"></span><br><span class="line"><span class="comment">//    词法分析器</span></span><br><span class="line">    <span class="keyword">val</span> lexer = CLexer(sourceFile).apply &#123;</span><br><span class="line"><span class="comment">//        忽略错误</span></span><br><span class="line">        removeErrorListeners()</span><br><span class="line">        addErrorListener(errorListener)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> tokenStream = CommonTokenStream(lexer)</span><br><span class="line"></span><br><span class="line"><span class="comment">//    语法分析器</span></span><br><span class="line">    <span class="keyword">val</span> parser = CParser(tokenStream).apply &#123;</span><br><span class="line"><span class="comment">//        忽略错误</span></span><br><span class="line">        removeErrorListeners()</span><br><span class="line">        addErrorListener(errorListener)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    遍历语法树</span></span><br><span class="line">    ParseTreeWalker().walk(</span><br><span class="line">        <span class="keyword">object</span> : CBaseListener() &#123;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">enterParameterList</span><span class="params">(ctx: <span class="type">CParser</span>.<span class="type">ParameterListContext</span>?)</span></span> &#123;</span><br><span class="line">                println(ctx?.detail())</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        parser.translationUnit()</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Dev</tag>
+        <tag>Java</tag>
+        <tag>Kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GameDev</title>
     <url>/2024/01/28/GameDev/</url>
     <content><![CDATA[<h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
 ]]></content>
       <tags>
         <tag>Dev</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2024/01/28/test/</url>
-    <content><![CDATA[<p>$$a^2 + b^2 &#x3D; c^2$$</p>
-<pre class="mermaid">graph LR;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello, world!&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">1</th>
-<th align="right">5</th>
-<th align="left">a</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="right">1</td>
-<td align="left">d</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="right">a</td>
-<td align="left">c</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="right">s</td>
-<td align="left">b</td>
-</tr>
-</tbody></table>
-]]></content>
-      <tags>
-        <tag>Misc</tag>
       </tags>
   </entry>
   <entry>
@@ -136,7 +116,7 @@
 </li>
 <li><p><code>CONFLATED</code></p>
 <blockquote>
-<p>Requests a conflated channel in the Channel(…) factory function. This is a shortcut to creating a channel with onBufferOverflow &#x3D; DROP_OLDEST.</p>
+<p>Requests a conflated channel in the Channel(…) factory function. This is a shortcut to creating a channel with<br>onBufferOverflow &#x3D; DROP_OLDEST.</p>
 </blockquote>
 </li>
 <li><p><code>RENDEZVOUS</code></p>
@@ -209,6 +189,7 @@
 <h1 id="Select-Experssion"><a href="#Select-Experssion" class="headerlink" title="Select Experssion"></a>Select Experssion</h1>]]></content>
       <tags>
         <tag>Dev</tag>
+        <tag>Kotlin</tag>
       </tags>
   </entry>
   <entry>
@@ -220,6 +201,48 @@
 <h1 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h1><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">Regex(<span class="string">&quot;&quot;&quot;(\d+)([A-Za-z])&quot;&quot;&quot;</span>)</span><br><span class="line">    .findAll(<span class="string">&quot;3A2B4C2D&quot;</span>)</span><br><span class="line">    .map &#123; it.groupValues &#125;</span><br><span class="line">    .forEach &#123; print(it[<span class="number">2</span>].repeat(it[<span class="number">1</span>].toInt())) &#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>Dev</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2024/01/28/test/</url>
+    <content><![CDATA[<p>$$a^2 + b^2 &#x3D; c^2$$</p>
+<pre class="mermaid">graph LR;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello, world!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">1</th>
+<th align="right">5</th>
+<th align="left">a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="right">1</td>
+<td align="left">d</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="right">a</td>
+<td align="left">c</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="right">s</td>
+<td align="left">b</td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>Misc</tag>
       </tags>
   </entry>
 </search>
