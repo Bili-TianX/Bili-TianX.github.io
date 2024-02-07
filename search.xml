@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ANTLR&amp;Kotlin&amp;Gradle</title>
+    <url>/2024/02/08/ANTLR-Kotlin-Gradle/</url>
+    <content><![CDATA[<blockquote>
+<p>build.gradle.kts</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    kotlin(<span class="string">&quot;jvm&quot;</span>) version <span class="string">&quot;1.9.22&quot;</span></span><br><span class="line">    antlr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">group = <span class="string">&quot;top.bilitianx&quot;</span></span><br><span class="line">version = <span class="string">&quot;1.0-SNAPSHOT&quot;</span></span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    antlr(<span class="string">&quot;org.antlr:antlr4:+&quot;</span>)</span><br><span class="line"></span><br><span class="line">    testImplementation(<span class="string">&quot;org.jetbrains.kotlin:kotlin-test&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.test &#123;</span><br><span class="line">    useJUnitPlatform()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">kotlin &#123;</span><br><span class="line">    jvmToolchain(<span class="number">17</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.generateGrammarSource &#123;</span><br><span class="line">    arguments = arguments + listOf(<span class="string">&quot;-visitor&quot;</span>, <span class="string">&quot;-package&quot;</span>, <span class="string">&quot;top.bilitianx.antlr4&quot;</span>)</span><br><span class="line">    outputDirectory = file(<span class="string">&quot;src/main/kotlin/top/bilitianx/antlr4&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.compileKotlin &#123;</span><br><span class="line">    dependsOn(tasks.generateGrammarSource)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>目录结构</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">src</span><br><span class="line">├─main</span><br><span class="line">│  ├─antlr</span><br><span class="line">│  │      C.g4</span><br><span class="line">│  │      CPP14Lexer.g4</span><br><span class="line">│  │      CPP14Parser.g4</span><br><span class="line">│  │</span><br><span class="line">│  ├─kotlin</span><br><span class="line">│  │  │  Main.kt</span><br><span class="line">│  │  │</span><br><span class="line">│  │  └─top</span><br><span class="line">│  │      └─bilitianx</span><br><span class="line">│  │          └─antlr4</span><br><span class="line">│  │                  C.interp</span><br><span class="line">│  │                  C.tokens</span><br><span class="line">│  │                  CBaseListener.java</span><br><span class="line">│  │                  CBaseVisitor.java</span><br><span class="line">│  │                  CLexer.interp</span><br><span class="line">│  │                  CLexer.java</span><br><span class="line">│  │                  CLexer.tokens</span><br><span class="line">│  │                  CListener.java</span><br><span class="line">│  │                  CParser.java</span><br><span class="line">│  │                  CPP14Lexer.interp</span><br><span class="line">│  │                  CPP14Lexer.java</span><br><span class="line">│  │                  CPP14Lexer.tokens</span><br><span class="line">│  │                  CPP14Parser.interp</span><br><span class="line">│  │                  CPP14Parser.java</span><br><span class="line">│  │                  CPP14Parser.tokens</span><br><span class="line">│  │                  CPP14ParserBaseListener.java</span><br><span class="line">│  │                  CPP14ParserBaseVisitor.java</span><br><span class="line">│  │                  CPP14ParserListener.java</span><br><span class="line">│  │                  CPP14ParserVisitor.java</span><br><span class="line">│  │                  CVisitor.java</span><br><span class="line">│  │</span><br><span class="line">│  └─resources</span><br><span class="line">└─test</span><br><span class="line">├─kotlin</span><br><span class="line">└─resources</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Dev</tag>
+        <tag>Kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ANTLR使用</title>
     <url>/2024/02/07/ANTLR%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="ANTLR-使用"><a href="#ANTLR-使用" class="headerlink" title="ANTLR 使用"></a>ANTLR 使用</h1><h2 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.antlr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>antlr4-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>antlr4<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.antlr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>antlr4-runtime<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.9.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -19,58 +36,8 @@
 ]]></content>
       <tags>
         <tag>Dev</tag>
-        <tag>Java</tag>
         <tag>Kotlin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2024/01/28/test/</url>
-    <content><![CDATA[<p>$$a^2 + b^2 &#x3D; c^2$$</p>
-<pre class="mermaid">graph LR;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello, world!&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th align="center">1</th>
-<th align="right">5</th>
-<th align="left">a</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2</td>
-<td align="right">1</td>
-<td align="left">d</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="right">a</td>
-<td align="left">c</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="right">s</td>
-<td align="left">b</td>
-</tr>
-</tbody></table>
-]]></content>
-      <tags>
-        <tag>Misc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GameDev</title>
-    <url>/2024/01/28/GameDev/</url>
-    <content><![CDATA[<h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
-]]></content>
-      <tags>
-        <tag>Dev</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -318,6 +285,15 @@
       </tags>
   </entry>
   <entry>
+    <title>GameDev</title>
+    <url>/2024/01/28/GameDev/</url>
+    <content><![CDATA[<h1 id="游戏开发"><a href="#游戏开发" class="headerlink" title="游戏开发"></a>游戏开发</h1><p><img data-src="/images/GameDev.svg" alt="GameDev.svg"></p>
+]]></content>
+      <tags>
+        <tag>Dev</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>字符串压缩、解压缩</title>
     <url>/2024/02/03/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B%E7%BC%A9/</url>
     <content><![CDATA[<p><img data-src="/images/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B%E7%BC%A9.png" alt="字符串压缩、解压缩.png"></p>
@@ -327,6 +303,47 @@
       <tags>
         <tag>Dev</tag>
         <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test</title>
+    <url>/2024/01/28/test/</url>
+    <content><![CDATA[<p>$$a^2 + b^2 &#x3D; c^2$$</p>
+<pre class="mermaid">graph LR;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;</pre>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello, world!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">1</th>
+<th align="right">5</th>
+<th align="left">a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2</td>
+<td align="right">1</td>
+<td align="left">d</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="right">a</td>
+<td align="left">c</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="right">s</td>
+<td align="left">b</td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>Misc</tag>
       </tags>
   </entry>
 </search>

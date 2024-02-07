@@ -121,7 +121,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -180,6 +180,72 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bili-tianx.github.io/2024/02/08/ANTLR-Kotlin-Gradle/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Bili_TianX">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianX Studio">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/02/08/ANTLR-Kotlin-Gradle/" class="post-title-link" itemprop="url">ANTLR&Kotlin&Gradle</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-02-08 07:52:08 / 修改时间：07:54:08" itemprop="dateCreated datePublished" datetime="2024-02-08T07:52:08+08:00">2024-02-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>build.gradle.kts</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    kotlin(<span class="string">&quot;jvm&quot;</span>) version <span class="string">&quot;1.9.22&quot;</span></span><br><span class="line">    antlr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">group = <span class="string">&quot;top.bilitianx&quot;</span></span><br><span class="line">version = <span class="string">&quot;1.0-SNAPSHOT&quot;</span></span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    antlr(<span class="string">&quot;org.antlr:antlr4:+&quot;</span>)</span><br><span class="line"></span><br><span class="line">    testImplementation(<span class="string">&quot;org.jetbrains.kotlin:kotlin-test&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.test &#123;</span><br><span class="line">    useJUnitPlatform()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">kotlin &#123;</span><br><span class="line">    jvmToolchain(<span class="number">17</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.generateGrammarSource &#123;</span><br><span class="line">    arguments = arguments + listOf(<span class="string">&quot;-visitor&quot;</span>, <span class="string">&quot;-package&quot;</span>, <span class="string">&quot;top.bilitianx.antlr4&quot;</span>)</span><br><span class="line">    outputDirectory = file(<span class="string">&quot;src/main/kotlin/top/bilitianx/antlr4&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">tasks.compileKotlin &#123;</span><br><span class="line">    dependsOn(tasks.generateGrammarSource)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>目录结构</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">├─main</span><br><span class="line">│  ├─antlr</span><br><span class="line">│  │      C.g4</span><br><span class="line">│  │      CPP14Lexer.g4</span><br><span class="line">│  │      CPP14Parser.g4</span><br><span class="line">│  │</span><br><span class="line">│  ├─kotlin</span><br><span class="line">│  │  │  Main.kt</span><br><span class="line">│  │  │</span><br><span class="line">│  │  └─top</span><br><span class="line">│  │      └─bilitianx</span><br><span class="line">│  │          └─antlr4</span><br><span class="line">│  │                  C.interp</span><br><span class="line">│  │                  C.tokens</span><br><span class="line">│  │                  CBaseListener.java</span><br><span class="line">│  │                  CBaseVisitor.java</span><br><span class="line">│  │                  CLexer.interp</span><br><span class="line">│  │                  CLexer.java</span><br><span class="line">│  │                  CLexer.tokens</span><br><span class="line">│  │                  CListener.java</span><br><span class="line">│  │                  CParser.java</span><br><span class="line">│  │                  CPP14Lexer.interp</span><br><span class="line">│  │                  CPP14Lexer.java</span><br><span class="line">│  │                  CPP14Lexer.tokens</span><br><span class="line">│  │                  CPP14Parser.interp</span><br><span class="line">│  │                  CPP14Parser.java</span><br><span class="line">│  │                  CPP14Parser.tokens</span><br><span class="line">│  │                  CPP14ParserBaseListener.java</span><br><span class="line">│  │                  CPP14ParserBaseVisitor.java</span><br><span class="line">│  │                  CPP14ParserListener.java</span><br><span class="line">│  │                  CPP14ParserVisitor.java</span><br><span class="line">│  │                  CVisitor.java</span><br><span class="line">│  │</span><br><span class="line">│  └─resources</span><br><span class="line">└─test</span><br><span class="line">├─kotlin</span><br><span class="line">└─resources</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -897,7 +963,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
